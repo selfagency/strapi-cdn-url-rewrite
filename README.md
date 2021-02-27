@@ -27,14 +27,14 @@ Open your collection or single type's controller file (eg., `./api/{COLLECTION}/
 ```javascript
 const StrapiCdnUrlRewrite = require('strapi-cdn-url-rewrite')
 
-const { cdn } = new StrapiCdnUrlRewrite()
+const { cdnRewrite } = new StrapiCdnUrlRewrite()
 
 module.exports = {
   async find(ctx) {
-    return cdn(await strapi.services.{COLLECTION}.find())
+    return cdnRewrite(await strapi.services.{COLLECTION}.find())
   },
   async findOne(ctx) {
-    return cdn(await strapi.services.{COLLECTION}.findOne())
+    return cdnRewrite(await strapi.services.{COLLECTION}.findOne())
   }
 }
 ```
@@ -42,7 +42,7 @@ module.exports = {
 ### Full Parameters
 
 ```javascript
-const { cdn } = StrapiCdnUrlRewrite(storageUrl, cdnUrl)
+const { cdnRewrite } = StrapiCdnUrlRewrite(storageUrl, cdnUrl)
 ```
 
 #### `storageUrl`
