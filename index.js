@@ -12,7 +12,7 @@ class StrapiCdnUrlRewrite {
       typeof cdnUrl === 'string' &&
       isUrl(cdnUrl)
     ) {
-      this.orignal = storageUrl
+      this.storage = storageUrl
       this.cdn = cdnUrl
     } else {
       throw new Error('`storageUrl` and `cdnUrl` must be valid URL strings')
@@ -21,24 +21,20 @@ class StrapiCdnUrlRewrite {
 
   cdnRewrite = data => {
     try {
-      if (data && data.constructor === Object) {
-        const flattened = flatten(data)
+      const flattened = flatten(data)
 
-        let matches = []
-        for (let prop in flattened) {
-          if (typeof flattened[prop] == 'string' && flattened[prop].includes(this.storage)) {
-            matches.push({
-              prop,
-              value: flattened[prop].replace(this.storage, this.cdn)
-            })
-          }
+      let matches = []
+      for (let prop in flattened) {
+        if (typeof flattened[prop] == 'string' && flattened[prop].includes(this.storage)) {
+          matches.push({
+            prop,
+            value: flattened[prop].replace(this.storage, this.cdn)
+          })
         }
-
-        matches.forEach(match => dset(data, match.prop, match.value))
-        return data
-      } else {
-        throw new Error('`data` must be valid object')
       }
+
+      matches.forEach(match => dset(data, match.prop, match.value))
+      return data
     } catch (err) {
       console.error(err)
     }
