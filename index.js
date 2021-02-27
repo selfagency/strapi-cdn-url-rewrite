@@ -19,7 +19,7 @@ class StrapiCdnUrlRewrite {
     }
   }
 
-  cdnRewrite = data => {
+  cdn = data => {
     try {
       if (data && data.constructor === Object) {
         const flattened = flatten(data)
