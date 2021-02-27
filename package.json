@@ -1,0 +1,22 @@
+{
+  "name": "strapi-cdn-url-rewrite",
+  "version": "0.0.1",
+  "description": "Strapi controller module to rewrite upload URLs to CDN",
+  "main": "index.js",
+  "repository": "https://gitlab.com/selfagency/strapi-cdn-url-rewrite",
+  "author": "Daniel Sieradski <hello@self.agency>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-gitignore": "^0.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "dset": "^3.1.0",
+    "flat": "^5.0.2",
+    "is-url-superb": "^5.0.0"
+  }
+}
