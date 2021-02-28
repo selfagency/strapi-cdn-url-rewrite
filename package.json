@@ -1,6 +1,6 @@
 {
   "name": "strapi-cdn-url-rewrite",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Strapi controller module to rewrite upload URLs to CDN",
   "main": "index.js",
   "repository": "https://gitlab.com/selfagency/strapi-cdn-url-rewrite",

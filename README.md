@@ -31,10 +31,11 @@ const { cdnRewrite } = new StrapiCdnUrlRewrite()
 
 module.exports = {
   async find(ctx) {
-    return cdnRewrite(await strapi.services.{COLLECTION}.find())
+    return cdnRewrite(await strapi.services.{COLLECTION}.find(ctx.query))
   },
   async findOne(ctx) {
-    return cdnRewrite(await strapi.services.{COLLECTION}.findOne())
+    const { id } = ctx.params
+    return cdnRewrite(await strapi.services.{COLLECTION}.findOne({ id }))
   }
 }
 ```
