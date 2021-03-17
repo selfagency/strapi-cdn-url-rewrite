@@ -1,40 +1,35 @@
-const flatten = require('flat')
-const { dset } = require('dset')
+const { flatten, unflatten } = require('safe-flat')
 const isUrl = require('is-url-superb')
 
 class StrapiCdnUrlRewrite {
-  constructor(storageUrl = process.env.STORAGE_ENDPOINT, cdnUrl = process.env.CDN_ENDPOINT) {
-    if (
-      storageUrl &&
-      typeof storageUrl === 'string' &&
-      isUrl(storageUrl) &&
-      cdnUrl &&
-      typeof cdnUrl === 'string' &&
-      isUrl(cdnUrl)
-    ) {
+  constructor(storageUrl, cdnUrl) {
+    if (storageUrl && isUrl(storageUrl) && cdnUrl && isUrl(cdnUrl)) {
       this.storage = storageUrl
       this.cdn = cdnUrl
+    } else if (
+      process.env.CDN_ENDPOINT &&
+      isUrl(process.env.CDN_ENDPOINT) &&
+      process.env.STORAGE_ENDPOINT &&
+      isUrl(process.env.STORAGE_ENDPOINT)
+    ) {
+      this.storage = process.env.STORAGE_ENDPOINT
+      this.cdn = process.env.CDN_ENDPOINT
     } else {
-      throw new Error('`storageUrl` and `cdnUrl` must be valid URL strings')
+      throw new Error('`storageUrl` and `cdnUrl` must be valid URLs')
     }
   }
 
-  cdnRewrite = data => {
+  cdnRewrite = async data => {
     try {
-      const flattened = flatten(data)
+      const flattened = flatten(await flatten(data)['0'])
 
-      let matches = []
       for (let prop in flattened) {
-        if (typeof flattened[prop] == 'string' && flattened[prop].includes(this.storage)) {
-          matches.push({
-            prop,
-            value: flattened[prop].replace(this.storage, this.cdn)
-          })
+        if (typeof flattened[prop] === 'string' && flattened[prop].startsWith(this.storage)) {
+          flattened[prop] = flattened[prop].replace(this.storage, this.cdn)
         }
       }
 
-      matches.forEach(match => dset(data, match.prop, match.value))
-      return data
+      return unflatten(flattened)
     } catch (err) {
       console.error(err)
     }

@@ -250,11 +250,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dset@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/dset/-/dset-3.1.0.tgz#23feb6df93816ea452566308b1374d6e869b0d7b"
-  integrity sha512-7xTQ5DzyE59Nn+7ZgXDXjKAGSGmXZHqttMVVz1r4QNfmGpyj+cm2YtI3II0c/+4zS4a9yq2mBhgdeq2QnpcYlw==
-
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
@@ -500,11 +495,6 @@ flat-cache@^3.0.4:
   dependencies:
     flatted "^3.1.0"
     rimraf "^3.0.2"
-
-flat@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/flat/-/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
-  integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
 
 flatted@^3.1.0:
   version "3.1.1"
@@ -885,6 +875,11 @@ run-parallel@^1.1.9:
   integrity sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==
   dependencies:
     queue-microtask "^1.2.2"
+
+safe-flat@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/safe-flat/-/safe-flat-2.0.2.tgz#8fc26e0c5addcf3b294efbdb602e95633f44ee5c"
+  integrity sha512-4plwd0jT25AB/gnVhEsjM9dt4wOZhp3Lk8xOmJ8tW8niJ2gB/QSKSvhqVY8zFQukAnPJhvn8BNc8mCSZxoVQ+A==
 
 safe-regex@^1.1.0:
   version "1.1.0"
