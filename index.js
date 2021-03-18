@@ -19,17 +19,33 @@ class StrapiCdnUrlRewrite {
     }
   }
 
+  crawl = data => {
+    const flattened = flatten(data)
+
+    for (let prop in flattened) {
+      if (typeof flattened[prop] === 'string' && flattened[prop].startsWith(this.storage)) {
+        flattened[prop] = flattened[prop].replace(this.storage, this.cdn)
+      }
+    }
+
+    return unflatten(flattened)
+  }
+
   cdnRewrite = async data => {
     try {
-      const flattened = flatten(await flatten(data)['0'])
+      data = await data
 
-      for (let prop in flattened) {
-        if (typeof flattened[prop] === 'string' && flattened[prop].startsWith(this.storage)) {
-          flattened[prop] = flattened[prop].replace(this.storage, this.cdn)
+      if (Array.isArray(data)) {
+        let out = []
+
+        for (let item of data) {
+          out.push(this.crawl(await item))
         }
-      }
 
-      return unflatten(flattened)
+        return out
+      } else {
+        return this.crawl(data)
+      }
     } catch (err) {
       console.error(err)
     }
