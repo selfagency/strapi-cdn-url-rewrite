@@ -7,7 +7,7 @@
   "author": "Daniel Sieradski <hello@self.agency>",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^7.20.0",
+    "eslint": "^8.44.0",
     "eslint-gitignore": "^0.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-security": "^1.4.0",
